@@ -15,24 +15,35 @@ std::string Person::lastName() const
     return "Smith";
 }
 
+std::string Person::location() const
+{
+    return "Kyiv";
+}
+
 Person::Date Person::dateOfBirth() const
 {
     return boost::gregorian::day_clock::local_day();
 }
 
-Person::Person( const std::string& firstName
-              , const std::string& lastName
-              ,       Date         dateOfBirth )
-    : firstName_{ firstName }
-    , lastName_{ lastName }
+Person::Person( std::string firstName
+              , std::string lastName
+              , std::string location
+              , Date        dateOfBirth )
+    : firstName_{ std::move( firstName ) }
+    , lastName_{ std::move( lastName ) }
+    , location_{ std::move( location ) }
     , dateOfBirth_{ std::move( dateOfBirth ) }
 {
 }
 
-Person::Person( const std::string& firstName
-              , const std::string& lastName
+Person::Person( std::string firstName
+              , std::string lastName
+              , std::string location
               , const std::string& dateOfBirth )
-    : Person{ firstName, lastName, boost::gregorian::from_simple_string( dateOfBirth ) }
+    : Person{ std::move( firstName )
+            , std::move( lastName )
+            , std::move( location )
+            , boost::gregorian::from_simple_string( dateOfBirth ) }
 {
 }
 } // namespace gtree

@@ -15,21 +15,25 @@ class Person
 public:
     using Date = boost::gregorian::date;
 
-    Person( const std::string& firstName
-          , const std::string& lastName
+    Person( std::string firstName
+          , std::string lastName
+          , std::string location
           , const std::string& dateOfBirth
           );
-    Person( const std::string& firstName
-          , const std::string& lastName
-          ,       Date         dateOfBirth
+    Person( std::string firstName
+          , std::string lastName
+          , std::string location
+          , Date        dateOfBirth
           );
 
     std::string firstName() const;
     std::string lastName() const;
+    std::string location() const;
     Date        dateOfBirth() const;
 private: // fields
     const std::string firstName_;
     const std::string lastName_;
+    const std::string location_;
     const Date        dateOfBirth_;
 }; // class Person
 } // namespace gtree

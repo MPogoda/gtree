@@ -12,10 +12,11 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
         using gtree::Person;
         namespace greg = boost::gregorian;
 
-        const Person p{ "Bob", "Dylan", "1941-05-24" };
+        const Person p{ "Bob", "Dylan", "Duluth", "1941-05-24" };
 
         BOOST_CHECK_EQUAL( p.firstName(), "Bob" );
         BOOST_CHECK_EQUAL( p.lastName(), "Dylan" );
+        BOOST_CHECK_EQUAL( p.location(), "Duluth" );
         BOOST_CHECK_EQUAL( p.dateOfBirth(), Person::Date( 1941, greg::May, 24 ) );
     }
 
