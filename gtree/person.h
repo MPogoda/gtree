@@ -26,10 +26,10 @@ public:
           , Date        dateOfBirth
           );
 
-    std::string firstName() const;
-    std::string lastName() const;
-    std::string location() const;
-    Date        dateOfBirth() const;
+    const std::string& firstName() const;
+    const std::string& lastName() const;
+    const std::string& location() const;
+    const Date&        dateOfBirth() const;
 private: // fields
     const std::string firstName_;
     const std::string lastName_;

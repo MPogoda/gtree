@@ -5,24 +5,24 @@
 
 namespace gtree
 {
-std::string Person::firstName() const
+const std::string& Person::firstName() const
 {
-    return "Bob";
+    return firstName_;
 }
 
-std::string Person::lastName() const
+const std::string& Person::lastName() const
 {
-    return "Smith";
+    return lastName_;
 }
 
-std::string Person::location() const
+const std::string& Person::location() const
 {
-    return "Kyiv";
+    return location_;
 }
 
-Person::Date Person::dateOfBirth() const
+const Person::Date& Person::dateOfBirth() const
 {
-    return boost::gregorian::day_clock::local_day();
+    return dateOfBirth_;
 }
 
 Person::Person( std::string firstName
