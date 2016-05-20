@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include <boost/date_time/gregorian/greg_date.hpp>
+
 namespace gtree
 {
 /*!
@@ -11,8 +13,11 @@ namespace gtree
 class Person
 {
 public:
+    using Date = boost::gregorian::date;
+
     std::string firstName() const;
     std::string lastName() const;
+    Date        dateOfBirth() const;
 private: // functions
 private: // fields
 }; // class Person

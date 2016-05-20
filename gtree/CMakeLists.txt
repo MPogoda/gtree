@@ -14,3 +14,6 @@ add_library( ${PROJECT_NAME} ${SOURCES} )
 
 set_property( TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14 )
 set_property( TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON )
+
+target_link_libraries( ${PROJECT_NAME} ${Boost_LIBRARIES} )
+
