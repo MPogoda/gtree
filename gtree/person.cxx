@@ -2,22 +2,22 @@
 
 namespace gtree
 {
-const std::string& Person::firstName() const
+const std::string& Person::firstName() const noexcept
 {
     return firstName_;
 }
 
-const std::string& Person::lastName() const
+const std::string& Person::lastName() const noexcept
 {
     return lastName_;
 }
 
-const std::string& Person::location() const
+const std::string& Person::location() const noexcept
 {
     return location_;
 }
 
-const std::string& Person::dateOfBirth() const
+const std::string& Person::dateOfBirth() const noexcept
 {
     return dateOfBirth_;
 }

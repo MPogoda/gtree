@@ -17,10 +17,10 @@ public:
           , std::string dateOfBirth
           );
 
-    const std::string& firstName() const;
-    const std::string& lastName() const;
-    const std::string& location() const;
-    const std::string& dateOfBirth() const;
+    const std::string& firstName()   const noexcept;
+    const std::string& lastName()    const noexcept;
+    const std::string& location()    const noexcept;
+    const std::string& dateOfBirth() const noexcept;
 private: // fields
     const std::string firstName_;
     const std::string lastName_;
