@@ -32,5 +32,29 @@ Person::Person( std::string firstName
     , dateOfBirth_{ std::move( dateOfBirth ) }
 {
 }
+
+namespace
+{
+// Hack to enable usage of std::make_shared< Person >()
+struct PublicPerson : Person
+{
+    template < typename... Args >
+    PublicPerson( Args&&... args )
+        : Person{ std::forward< Args >( args )... }
+    {
+    }
+}; // struct PublicPerson
+} // namespace
+
+std::shared_ptr< Person > Person::create( std::string firstName
+                                        , std::string lastName
+                                        , std::string location
+                                        , std::string dateOfBirth )
+{
+    return std::make_shared< PublicPerson >( std::move( firstName )
+                                           , std::move( lastName )
+                                           , std::move( location )
+                                           , std::move( dateOfBirth ) );
+}
 } // namespace gtree
 
