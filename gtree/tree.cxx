@@ -3,6 +3,11 @@
 
 namespace gtree
 {
+Tree::Tree()
+    : root_{ Person::create( {}, {}, {}, {} ) }
+{
+}
+
 Tree::PersonPtr Tree::createPerson( std::string firstName, std::string lastName
                                   , std::string location, std::string dateOfBirth)
 {

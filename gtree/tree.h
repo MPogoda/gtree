@@ -18,8 +18,11 @@ public:
                           , std::string location
                           , std::string dateOfBirth
                           );
+
+    Tree();
 private: // functions
 private: // fields
+    const PersonPtr root_;
 }; // class Tree
 } // namespace gtree
 
