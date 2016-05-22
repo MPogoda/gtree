@@ -34,5 +34,50 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
         BOOST_CHECK_EQUAL( parent->isRoot(), true );
     }
 
+    BOOST_AUTO_TEST_CASE( CheckSimpleHierarchy )
+    {
+        using gtree::Tree;
+
+        Tree tree{};
+        const auto p = tree.createPerson( "Paul", "McCartney", "Liverpool", "1942-Jun-18" );
+
+        do {
+            const auto ps = p->parents();
+            BOOST_REQUIRE_EQUAL( ps.size(), 1 );
+
+            const auto& parent = ps.front();
+            BOOST_CHECK_EQUAL( parent->isRoot(), true );
+        } while (0);
+
+        const auto mother = tree.createPerson( "Mary", "Patricia", "", "1909" );
+        do {
+            const auto ps = mother->parents();
+            BOOST_REQUIRE_EQUAL( ps.size(), 1 );
+
+            const auto& parent = ps.front();
+            BOOST_CHECK_EQUAL( parent->isRoot(), true );
+        } while (0);
+
+        const auto father = tree.createPerson( "James", "McCartney", "", "1902" );
+        do {
+            const auto ps = father->parents();
+            BOOST_REQUIRE_EQUAL( ps.size(), 1 );
+
+            const auto& parent = ps.front();
+            BOOST_CHECK_EQUAL( parent->isRoot(), true );
+        } while (0);
+
+        p->setParents( mother, father );
+        do {
+            const auto ps = p->parents();
+            BOOST_REQUIRE_EQUAL( ps.size(), 2 );
+
+            const auto& parent1 = ps.front();
+            BOOST_CHECK_EQUAL( parent1->isRoot(), false );
+            const auto& parent2 = ps.back();
+            BOOST_CHECK_EQUAL( parent2->isRoot(), false );
+        } while (0);
+    }
+
 BOOST_AUTO_TEST_SUITE_END();
 } // namespace gtree_test

@@ -83,5 +83,11 @@ Person::Persons Person::parents() const
 
     return result;
 }
+
+void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
+{
+    parent1_ = parent1;
+    parent2_ = parent2;
+}
 } // namespace gtree
 
