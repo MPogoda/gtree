@@ -32,7 +32,7 @@ Person::Person( std::string firstName
     , location_{ std::move( location ) }
     , dateOfBirth_{ std::move( dateOfBirth ) }
     , parent1_{ root }
-    , parent2_{ std::move( root ) }
+    , parent2_{ root }
 {
 }
 
@@ -65,6 +65,23 @@ std::shared_ptr< Person > Person::create( std::string firstName
 bool Person::isRoot() const noexcept
 {
     return parent1_.expired() && parent2_.expired();
+}
+
+Person::Persons Person::parents() const
+{
+    Persons result{}; result.reserve( 2 );
+
+    if (auto pt1 = parent1_.lock()) {
+        result.emplace_back( pt1 );
+
+        if (auto pt2 = parent2_.lock()) {
+            if (pt1 != pt2) {
+                result.emplace_back( std::move( pt2 ) );
+            }
+        }
+    }
+
+    return result;
 }
 } // namespace gtree
 
