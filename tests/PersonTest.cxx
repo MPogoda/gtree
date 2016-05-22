@@ -3,6 +3,8 @@
 #include <gtree/person.h>
 #include <gtree/tree.h>
 
+#include <exception>
+
 namespace gtree_test
 {
 BOOST_AUTO_TEST_SUITE(PersonTestSuite)
@@ -77,6 +79,23 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
             const auto& parent2 = ps.back();
             BOOST_CHECK_EQUAL( parent2->isRoot(), false );
         } while (0);
+    }
+
+    BOOST_AUTO_TEST_CASE( CheckThatParentsMayNotBeEmpty )
+    {
+        using gtree::Tree;
+
+        Tree tree{};
+        const auto p = tree.createPerson( "Paul", "McCartney", "Liverpool", "1942-Jun-18" );
+
+        BOOST_REQUIRE_THROW( p->setParents( {}, {} )
+                           , std::invalid_argument );
+
+        const auto mother = tree.createPerson( "Mary", "Patricia", "", "1909" );
+        BOOST_REQUIRE_THROW( p->setParents( mother, {} )
+                           , std::invalid_argument );
+        BOOST_REQUIRE_THROW( p->setParents( {}, mother )
+                           , std::invalid_argument );
     }
 
 BOOST_AUTO_TEST_SUITE_END();
