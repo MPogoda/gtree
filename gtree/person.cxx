@@ -61,5 +61,10 @@ std::shared_ptr< Person > Person::create( std::string firstName
                                            , std::move( dateOfBirth )
                                            , std::move( root ) );
 }
+
+bool Person::isRoot() const noexcept
+{
+    return parent1_.expired() && parent2_.expired();
+}
 } // namespace gtree
 

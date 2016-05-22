@@ -17,6 +17,7 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
         BOOST_CHECK_EQUAL( p->lastName(), "Dylan" );
         BOOST_CHECK_EQUAL( p->location(), "Duluth" );
         BOOST_CHECK_EQUAL( p->dateOfBirth(), "1941-May-24" );
+        BOOST_CHECK_EQUAL( p->isRoot(), false );
     }
 
 BOOST_AUTO_TEST_SUITE_END();

@@ -17,6 +17,8 @@ public:
     const std::string& lastName()    const noexcept;
     const std::string& location()    const noexcept;
     const std::string& dateOfBirth() const noexcept;
+
+    bool isRoot() const noexcept;
 protected: // functions
     Person( std::string firstName
           , std::string lastName
