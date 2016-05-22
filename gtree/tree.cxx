@@ -4,7 +4,7 @@
 namespace gtree
 {
 Tree::Tree()
-    : root_{ Person::create( {}, {}, {}, {} ) }
+    : root_{ Person::create( {}, {}, {}, {}, {}) }
 {
 }
 
@@ -12,7 +12,8 @@ Tree::PersonPtr Tree::createPerson( std::string firstName, std::string lastName
                                   , std::string location, std::string dateOfBirth)
 {
     return Person::create( std::move( firstName ), std::move( lastName )
-                         , std::move( location ), std::move( dateOfBirth ) );
+                         , std::move( location ), std::move( dateOfBirth )
+                         , root_ );
 }
 } // namespace gtree
 

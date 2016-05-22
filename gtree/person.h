@@ -22,6 +22,7 @@ protected: // functions
           , std::string lastName
           , std::string location
           , std::string dateOfBirth
+          , std::weak_ptr< Person > root
           );
 
 private: // functions
@@ -29,6 +30,7 @@ private: // functions
                                            , std::string lastName
                                            , std::string location
                                            , std::string dateOfBirth
+                                           , std::weak_ptr< Person > root
                                            );
 
 private: // fields
@@ -36,6 +38,9 @@ private: // fields
     const std::string lastName_;
     const std::string location_;
     const std::string dateOfBirth_;
+
+    std::weak_ptr< Person > parent1_;
+    std::weak_ptr< Person > parent2_;
 
     friend class Tree;
 }; // class Person
