@@ -1,5 +1,7 @@
 #include "person.h"
 
+#include <exception>
+
 namespace gtree
 {
 const std::string& Person::firstName() const noexcept
@@ -86,6 +88,9 @@ Person::Persons Person::parents() const
 
 void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
 {
+    if (!parent1 || !parent2) {
+        throw std::invalid_argument{ "Parents shouldn't be empty!" };
+    }
     parent1_ = parent1;
     parent2_ = parent2;
 }
