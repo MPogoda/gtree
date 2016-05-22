@@ -94,5 +94,10 @@ void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
     parent1_ = parent1;
     parent2_ = parent2;
 }
+
+Person::Persons Person::children() const
+{
+    return { std::begin( children_ ), std::end( children_ ) };
+}
 } // namespace gtree
 

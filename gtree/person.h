@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <unordered_set>
 
 namespace gtree
 {
@@ -16,6 +17,7 @@ class Person
 public:
     using PersonPtr = std::shared_ptr< Person >;
     using Persons = std::vector< PersonPtr >;
+    using PersonSet = std::unordered_set< PersonPtr >;
 
     const std::string& firstName()   const noexcept;
     const std::string& lastName()    const noexcept;
@@ -26,6 +28,8 @@ public:
 
     Persons parents() const;
     void setParents( PersonPtr parent1, PersonPtr parent2 );
+
+    Persons children() const;
 protected: // functions
     Person( std::string firstName
           , std::string lastName
@@ -50,6 +54,8 @@ private: // fields
 
     std::weak_ptr< Person > parent1_;
     std::weak_ptr< Person > parent2_;
+
+    PersonSet children_;
 
     friend class Tree;
 }; // class Person
