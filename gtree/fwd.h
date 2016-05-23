@@ -7,6 +7,7 @@ namespace gtree
 {
 class Person;
 class Tree;
+class DescendantsProxy;
 
 using PersonPtr      = std::shared_ptr< Person >;
 using PersonConstPtr = std::shared_ptr< const Person >;
