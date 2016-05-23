@@ -92,6 +92,14 @@ void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
         throw std::invalid_argument{ "Parents shouldn't be empty!" };
     }
 
+    if (const auto p =  parent1_.lock()) {
+        p->rmChild( shared_from_this() );
+    }
+
+    if (const auto p =  parent2_.lock()) {
+        p->rmChild( shared_from_this() );
+    }
+
     parent1_ = parent1;
     parent2_ = parent2;
 
@@ -104,9 +112,14 @@ Person::Persons Person::children() const
     return { std::begin( children_ ), std::end( children_ ) };
 }
 
-void Person::addChild( PersonPtr child )
+void Person::addChild( PersonPtr&& child )
 {
-    children_.insert( child );
+    children_.emplace( child );
+}
+
+void Person::rmChild( const PersonPtr& child )
+{
+    children_.erase( child );
 }
 } // namespace gtree
 

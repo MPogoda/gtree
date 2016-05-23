@@ -46,7 +46,8 @@ private: // functions
                                            , std::weak_ptr< Person > root
                                            );
 
-    void addChild( PersonPtr child );
+    void addChild( PersonPtr&& child );
+    void rmChild( const PersonPtr& child );
 private: // fields
     const std::string firstName_;
     const std::string lastName_;
