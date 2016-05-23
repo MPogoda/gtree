@@ -91,13 +91,22 @@ void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
     if (!parent1 || !parent2) {
         throw std::invalid_argument{ "Parents shouldn't be empty!" };
     }
+
     parent1_ = parent1;
     parent2_ = parent2;
+
+    parent1->addChild( shared_from_this() );
+    parent2->addChild( shared_from_this() );
 }
 
 Person::Persons Person::children() const
 {
     return { std::begin( children_ ), std::end( children_ ) };
+}
+
+void Person::addChild( PersonPtr child )
+{
+    children_.insert( child );
 }
 } // namespace gtree
 

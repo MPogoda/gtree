@@ -12,7 +12,7 @@ class Tree;
  * \class Person
  * \brief
  */
-class Person
+class Person : public std::enable_shared_from_this< Person >
 {
 public:
     using PersonPtr = std::shared_ptr< Person >;
@@ -46,6 +46,7 @@ private: // functions
                                            , std::weak_ptr< Person > root
                                            );
 
+    void addChild( PersonPtr child );
 private: // fields
     const std::string firstName_;
     const std::string lastName_;
