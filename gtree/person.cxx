@@ -91,7 +91,13 @@ void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
     }
 
     if ((parent1.get() == this) || (parent2.get() == this)) {
-        throw std::invalid_argument{ "Person cannot be parent to theirself!" };
+        throw std::invalid_argument{ "Person cannot be parent to themself!" };
+    }
+
+    for (const auto& a : descendants()) {
+        if ((parent1 == a) || (parent2 == a)) {
+            throw std::invalid_argument{ "Person cannot be parent to their ascendant!" };
+        }
     }
 
     if (const auto p =  parent1_.lock()) {

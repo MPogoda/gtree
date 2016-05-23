@@ -78,9 +78,9 @@ struct HierarchyFixture
         leopold->setParents( albert1, victoria1 );
         beatrice1->setParents( albert1, victoria1 );
 
-        albert1->setParents( edward1, alexandra1 );
+        albert2->setParents( edward1, alexandra1 );
         louise2->setParents( edward1, alexandra1 );
-        victoria1->setParents( edward1, alexandra1 );
+        victoria3->setParents( edward1, alexandra1 );
         maud->setParents( edward1, alexandra1 );
         john1->setParents( edward1, alexandra1 );
         george1->setParents( edward1, alexandra1 );
