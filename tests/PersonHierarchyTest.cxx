@@ -8,7 +8,7 @@
 namespace gtree_test
 {
 using gtree::Tree;
-using PersonPtr = gtree::Tree::PersonPtr;
+using PersonPtr = gtree::PersonPtr;
 
 struct PaulFixture
 {
