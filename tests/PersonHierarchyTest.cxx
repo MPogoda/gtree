@@ -135,6 +135,23 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
             BOOST_TEST( child1 != child2 );
         } while (0);
     }
+
+    BOOST_AUTO_TEST_CASE( CheckThatPaulParentsIsBeingUpdated )
+    {
+        const auto father2 = tree.createPerson( "dummyFather", "", "", "" );
+
+        paul->setParents( mother, father2 );
+
+        const auto parents = paul->parents();
+
+        BOOST_REQUIRE_EQUAL( parents.size(), 2 );
+        const auto p1 = parents.front();
+        const auto p2 = parents.back();
+
+        BOOST_TEST( ((p1 == father2) || (p2 == father2)) );
+        BOOST_TEST( ((p1 == mother) || (p2 == mother)) );
+        BOOST_REQUIRE_NE( p1, p2 );
+    }
 BOOST_AUTO_TEST_SUITE_END()
 } // namespace gtree_test
 
