@@ -20,6 +20,8 @@ public:
                           );
 
     Tree();
+
+    const PersonPtr& root() const noexcept;
 private: // functions
 private: // fields
     const PersonPtr root_;

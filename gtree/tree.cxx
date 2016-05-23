@@ -15,5 +15,10 @@ Tree::PersonPtr Tree::createPerson( std::string firstName, std::string lastName
                          , std::move( location ), std::move( dateOfBirth )
                          , root_ );
 }
+
+const Tree::PersonPtr& Tree::root() const noexcept
+{
+    return root_;
+}
 } // namespace gtree
 
