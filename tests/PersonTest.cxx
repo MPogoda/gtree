@@ -108,5 +108,20 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
         BOOST_REQUIRE_THROW( p->setParents( p, tree.root() )
                            , std::invalid_argument );
     }
+
+    BOOST_AUTO_TEST_CASE( CheckThatPersonCannotBeParentToTheirAscendant )
+    {
+        using gtree::Tree;
+
+        Tree tree{};
+        const auto p = tree.createPerson( "Paul", "McCartney", "Liverpool", "1942-Jun-18" );
+
+        const auto mother = tree.createPerson( "Mary", "Patricia", "", "1909" );
+
+        p->setParents( mother, tree.root() );
+
+        BOOST_REQUIRE_THROW( mother->setParents( p, tree.root() )
+                           , std::invalid_argument );
+    }
 BOOST_AUTO_TEST_SUITE_END();
 } // namespace gtree_test
