@@ -90,6 +90,10 @@ void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
         throw std::invalid_argument{ "Parents shouldn't be empty!" };
     }
 
+    if ((parent1.get() == this) || (parent2.get() == this)) {
+        throw std::invalid_argument{ "Person cannot be parent to theirself!" };
+    }
+
     if (const auto p =  parent1_.lock()) {
         p->rmChild( shared_from_this() );
     }
