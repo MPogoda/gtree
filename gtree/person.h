@@ -26,6 +26,7 @@ public:
 
     PersonSet parents() const;
     void setParents( PersonPtr parent1, PersonPtr parent2 );
+    void setParentsUnsafe( PersonPtr parent1, PersonPtr parent2 );
 
     const PersonSet& children() const;
 

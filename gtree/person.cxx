@@ -100,6 +100,11 @@ void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
         }
     }
 
+    setParentsUnsafe( std::move( parent1 ), std::move( parent2 ) );
+}
+
+void Person::setParentsUnsafe( PersonPtr parent1, PersonPtr parent2 )
+{
     if (const auto p =  parent1_.lock()) {
         p->rmChild( shared_from_this() );
     }
