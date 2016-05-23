@@ -103,6 +103,38 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
             BOOST_CHECK_EQUAL( child, paul );
         } while (0);
     }
+
+    BOOST_AUTO_TEST_CASE( CheckThatPaulParentsHaveTwoChildren )
+    {
+        const auto michael = tree.createPerson( "Michael", "McCartney", "Liverpool", "1944-Jan-07" );
+        michael->setParents( father, mother );
+
+        do {
+            const auto children = father->children();
+
+            BOOST_REQUIRE_EQUAL(  children.size(), 2 );
+
+            const auto child1 = children.front();
+            const auto child2 = children.back();
+
+            BOOST_TEST( ((child1 == paul) || (child2 == paul)) );
+            BOOST_TEST( ((child1 == michael) || (child2 == michael)) );
+            BOOST_TEST( child1 != child2 );
+        } while (0);
+
+        do {
+            const auto children = mother->children();
+
+            BOOST_REQUIRE_EQUAL(  children.size(), 2 );
+
+            const auto child1 = children.front();
+            const auto child2 = children.back();
+
+            BOOST_TEST( ((child1 == paul) || (child2 == paul)) );
+            BOOST_TEST( ((child1 == michael) || (child2 == michael)) );
+            BOOST_TEST( child1 != child2 );
+        } while (0);
+    }
 BOOST_AUTO_TEST_SUITE_END()
 } // namespace gtree_test
 
