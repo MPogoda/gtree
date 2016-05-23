@@ -11,9 +11,14 @@ Tree::Tree()
 PersonPtr Tree::createPerson( std::string firstName, std::string lastName
                             , std::string location, std::string dateOfBirth)
 {
-    return Person::create( std::move( firstName ), std::move( lastName )
-                         , std::move( location ), std::move( dateOfBirth )
-                         , root_ );
+    auto result = Person::create( firstName, lastName, location, dateOfBirth, root_ );
+
+    firstNameIndex_.emplace( std::move( firstName ), result );
+    lastNameIndex_.emplace( std::move( lastName ), result );
+    locationIndex_.emplace( std::move( location ), result );
+    dateOfBirthIndex_.emplace( std::move( dateOfBirth ), result );
+
+    return result;
 }
 
 const PersonPtr& Tree::root() const noexcept
