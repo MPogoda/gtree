@@ -73,6 +73,13 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
             BOOST_TEST( ps.front()->isRoot() );
         } while (0);
     }
+
+    BOOST_AUTO_TEST_CASE( CheckThatPaulHasNoChildren )
+    {
+        const auto children = paul->children();
+
+        BOOST_TEST( children.empty() );
+    }
 BOOST_AUTO_TEST_SUITE_END()
 } // namespace gtree_test
 
