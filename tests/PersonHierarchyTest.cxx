@@ -80,6 +80,29 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
 
         BOOST_TEST( children.empty() );
     }
+
+    BOOST_AUTO_TEST_CASE( CheckThatPaulParentsHaveOneChild)
+    {
+        do {
+            const auto children = father->children();
+
+            BOOST_REQUIRE_EQUAL( children.size(), 1 );
+
+            const auto child = children.front();
+
+            BOOST_CHECK_EQUAL( child, paul );
+        } while (0);
+
+        do {
+            const auto children = mother->children();
+
+            BOOST_REQUIRE_EQUAL( children.size(), 1 );
+
+            const auto child = children.front();
+
+            BOOST_CHECK_EQUAL( child, paul );
+        } while (0);
+    }
 BOOST_AUTO_TEST_SUITE_END()
 } // namespace gtree_test
 
