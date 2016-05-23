@@ -174,6 +174,38 @@ struct HierarchyFixture
 }; // struct HierarchyFixture
 
 BOOST_FIXTURE_TEST_SUITE( DescendantsTraversalTestSuite, HierarchyFixture )
+    BOOST_AUTO_TEST_CASE( CheckQueenElizabethsDescendents )
+    {
+        std::unordered_map< PersonConstPtr, bool > visited{ { charles, false }
+                                                     , { anne, false }
+                                                     , { andrew, false }
+                                                     , { edward4, false }
+                                                     , { william, false }
+                                                     , { henry2, false }
+                                                     , { peter, false }
+                                                     , { zara, false }
+                                                     , { beatrice2, false }
+                                                     , { eugenie, false }
+                                                     , { louise3, false }
+                                                     , { viscount, false }
+        };
+
+        for (const auto it : elizabeth2->descendants() ) {
+            const auto s = visited.find( it );
+
+            if (s == std::end( visited)) {
+                BOOST_TEST_REQUIRE( false, "Unknown descendant!" );
+            }
+
+            BOOST_TEST( !s->second, "We shouldn't visit the same descendant twice!" );
+
+            s->second = true;
+        }
+
+        for (const auto it : visited) {
+            BOOST_TEST( it.second, "All Queen's descendants should be marked!" );
+        }
+    }
 BOOST_AUTO_TEST_SUITE_END()
 } // namespace gtree_test
 

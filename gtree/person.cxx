@@ -119,5 +119,10 @@ void Person::rmChild( const PersonPtr& child )
 {
     children_.erase( child );
 }
+
+DescendantsProxy Person::descendants() const
+{
+    return DescendantsProxy{ shared_from_this() };
+}
 } // namespace gtree
 

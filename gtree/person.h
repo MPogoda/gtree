@@ -2,6 +2,9 @@
 
 #include "fwd.h"
 
+// Include this header because descendants() call will not work without it :)
+#include "descendants_proxy.h"
+
 #include <memory>
 #include <string>
 
@@ -25,6 +28,8 @@ public:
     void setParents( PersonPtr parent1, PersonPtr parent2 );
 
     const PersonSet& children() const;
+
+    DescendantsProxy descendants() const;
 protected: // functions
     Person( std::string firstName
           , std::string lastName
