@@ -69,17 +69,15 @@ bool Person::isRoot() const noexcept
     return parent1_.expired() && parent2_.expired();
 }
 
-Person::Persons Person::parents() const
+Person::PersonSet Person::parents() const
 {
-    Persons result{}; result.reserve( 2 );
+    PersonSet result{}; result.reserve( 2 );
 
     if (auto pt1 = parent1_.lock()) {
-        result.emplace_back( pt1 );
+        result.emplace( pt1 );
 
         if (auto pt2 = parent2_.lock()) {
-            if (pt1 != pt2) {
-                result.emplace_back( std::move( pt2 ) );
-            }
+            result.emplace( pt2 );
         }
     }
 
@@ -107,9 +105,9 @@ void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
     parent2->addChild( shared_from_this() );
 }
 
-Person::Persons Person::children() const
+const Person::PersonSet& Person::children() const
 {
-    return { std::begin( children_ ), std::end( children_ ) };
+    return children_;
 }
 
 void Person::addChild( PersonPtr&& child )

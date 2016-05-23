@@ -51,9 +51,9 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
         do {
             const auto ps = paul->parents();
             BOOST_REQUIRE_EQUAL( ps.size(), 2 );
-            const auto& parent1 = ps.front();
+            const auto& parent1 = *ps.cbegin();
             BOOST_TEST( !parent1->isRoot() );
-            const auto& parent2 = ps.back();
+            const auto& parent2 = *std::next( ps.cbegin() );
             BOOST_TEST( !parent2->isRoot() );
 
             BOOST_TEST( ((parent1 == father) || (parent2 == father)));
@@ -64,13 +64,13 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
         do {
             const auto ps = mother->parents();
             BOOST_REQUIRE_EQUAL( ps.size(), 1 );
-            BOOST_TEST( ps.front()->isRoot() );
+            BOOST_TEST( (*ps.cbegin())->isRoot() );
         } while (0);
 
         do {
             const auto ps = father->parents();
             BOOST_REQUIRE_EQUAL( ps.size(), 1 );
-            BOOST_TEST( ps.front()->isRoot() );
+            BOOST_TEST( (*ps.cbegin())->isRoot() );
         } while (0);
     }
 
@@ -88,7 +88,7 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
 
             BOOST_REQUIRE_EQUAL( children.size(), 1 );
 
-            const auto child = children.front();
+            const auto child = *children.cbegin();
 
             BOOST_CHECK_EQUAL( child, paul );
         } while (0);
@@ -98,7 +98,7 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
 
             BOOST_REQUIRE_EQUAL( children.size(), 1 );
 
-            const auto child = children.front();
+            const auto child = *children.cbegin();
 
             BOOST_CHECK_EQUAL( child, paul );
         } while (0);
@@ -114,8 +114,8 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
 
             BOOST_REQUIRE_EQUAL(  children.size(), 2 );
 
-            const auto child1 = children.front();
-            const auto child2 = children.back();
+            const auto child1 = *children.cbegin();
+            const auto child2 = *std::next( children.cbegin() );
 
             BOOST_TEST( ((child1 == paul) || (child2 == paul)) );
             BOOST_TEST( ((child1 == michael) || (child2 == michael)) );
@@ -127,8 +127,8 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
 
             BOOST_REQUIRE_EQUAL(  children.size(), 2 );
 
-            const auto child1 = children.front();
-            const auto child2 = children.back();
+            const auto child1 = *children.cbegin();
+            const auto child2 = *std::next( children.cbegin() );
 
             BOOST_TEST( ((child1 == paul) || (child2 == paul)) );
             BOOST_TEST( ((child1 == michael) || (child2 == michael)) );
@@ -145,8 +145,8 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
         const auto parents = paul->parents();
 
         BOOST_REQUIRE_EQUAL( parents.size(), 2 );
-        const auto p1 = parents.front();
-        const auto p2 = parents.back();
+        const auto p1 = *parents.cbegin();
+        const auto p2 = *std::next( parents.cbegin() );
 
         BOOST_TEST( ((p1 == father2) || (p2 == father2)) );
         BOOST_TEST( ((p1 == mother) || (p2 == mother)) );
@@ -163,13 +163,13 @@ BOOST_FIXTURE_TEST_SUITE( PersonHierarchyTestSuite, PaulFixture )
             const auto children = mother->children();
 
             BOOST_REQUIRE_EQUAL( children.size(), 1 );
-            BOOST_REQUIRE_EQUAL( children.front(), paul );
+            BOOST_REQUIRE_EQUAL( *children.cbegin(), paul );
         } while (0);
         do {
             const auto children = father2->children();
 
             BOOST_REQUIRE_EQUAL( children.size(), 1 );
-            BOOST_REQUIRE_EQUAL( children.front(), paul );
+            BOOST_REQUIRE_EQUAL( *children.cbegin(), paul );
         } while (0);
         do {
             const auto children = father->children();

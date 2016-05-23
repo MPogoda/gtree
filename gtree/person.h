@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <string>
-#include <vector>
 #include <unordered_set>
 
 namespace gtree
@@ -16,7 +15,6 @@ class Person : public std::enable_shared_from_this< Person >
 {
 public:
     using PersonPtr = std::shared_ptr< Person >;
-    using Persons = std::vector< PersonPtr >;
     using PersonSet = std::unordered_set< PersonPtr >;
 
     const std::string& firstName()   const noexcept;
@@ -26,10 +24,10 @@ public:
 
     bool isRoot() const noexcept;
 
-    Persons parents() const;
+    PersonSet parents() const;
     void setParents( PersonPtr parent1, PersonPtr parent2 );
 
-    Persons children() const;
+    const PersonSet& children() const;
 protected: // functions
     Person( std::string firstName
           , std::string lastName

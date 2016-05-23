@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
         const auto ps = p->parents();
         BOOST_REQUIRE_EQUAL( ps.size(), 1 );
 
-        const auto& parent = ps.front();
+        const auto& parent = *ps.cbegin();
         BOOST_CHECK_EQUAL( parent->isRoot(), true );
     }
 
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
             const auto ps = p->parents();
             BOOST_REQUIRE_EQUAL( ps.size(), 1 );
 
-            const auto& parent = ps.front();
+            const auto& parent = *ps.cbegin();
             BOOST_CHECK_EQUAL( parent->isRoot(), true );
         } while (0);
 
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
             const auto ps = mother->parents();
             BOOST_REQUIRE_EQUAL( ps.size(), 1 );
 
-            const auto& parent = ps.front();
+            const auto& parent = *ps.cbegin();
             BOOST_CHECK_EQUAL( parent->isRoot(), true );
         } while (0);
 
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
             const auto ps = father->parents();
             BOOST_REQUIRE_EQUAL( ps.size(), 1 );
 
-            const auto& parent = ps.front();
+            const auto& parent = *ps.cbegin();
             BOOST_CHECK_EQUAL( parent->isRoot(), true );
         } while (0);
 
@@ -74,9 +74,9 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
             const auto ps = p->parents();
             BOOST_REQUIRE_EQUAL( ps.size(), 2 );
 
-            const auto& parent1 = ps.front();
+            const auto& parent1 = *ps.cbegin();
             BOOST_CHECK_EQUAL( parent1->isRoot(), false );
-            const auto& parent2 = ps.back();
+            const auto& parent2 = *std::next( ps.cbegin() );
             BOOST_CHECK_EQUAL( parent2->isRoot(), false );
         } while (0);
     }
