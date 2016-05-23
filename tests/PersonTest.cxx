@@ -98,5 +98,15 @@ BOOST_AUTO_TEST_SUITE(PersonTestSuite)
                            , std::invalid_argument );
     }
 
+    BOOST_AUTO_TEST_CASE( CheckThatPersonCannotBeParentToTheirself )
+    {
+        using gtree::Tree;
+
+        Tree tree{};
+        const auto p = tree.createPerson( "Paul", "McCartney", "Liverpool", "1942-Jun-18" );
+
+        BOOST_REQUIRE_THROW( p->setParents( p, tree.root() )
+                           , std::invalid_argument );
+    }
 BOOST_AUTO_TEST_SUITE_END();
 } // namespace gtree_test
