@@ -1,12 +1,16 @@
 #include <boost/test/unit_test.hpp>
 
+#include <gtree/fwd.h>
 #include <gtree/person.h>
 #include <gtree/tree.h>
+
+#include <unordered_map>
 
 namespace gtree_test
 {
 using gtree::Tree;
-using PersonPtr = Tree::PersonPtr;
+using gtree::PersonConstPtr;
+using gtree::PersonPtr;
 
 struct HierarchyFixture
 {

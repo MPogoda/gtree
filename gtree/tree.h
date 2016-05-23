@@ -1,10 +1,9 @@
 #pragma once
 
-#include <memory>
+#include "fwd.h"
 
 namespace gtree
 {
-class Person;
 /*!
  * \class Tree
  * \brief
@@ -12,7 +11,6 @@ class Person;
 class Tree
 {
 public:
-    using PersonPtr = std::shared_ptr< Person >;
     PersonPtr createPerson( std::string firstName
                           , std::string lastName
                           , std::string location
@@ -22,7 +20,6 @@ public:
     Tree();
 
     const PersonPtr& root() const noexcept;
-private: // functions
 private: // fields
     const PersonPtr root_;
 }; // class Tree

@@ -69,7 +69,7 @@ bool Person::isRoot() const noexcept
     return parent1_.expired() && parent2_.expired();
 }
 
-Person::PersonSet Person::parents() const
+PersonSet Person::parents() const
 {
     PersonSet result{}; result.reserve( 2 );
 
@@ -105,7 +105,7 @@ void Person::setParents( PersonPtr parent1, PersonPtr parent2 )
     parent2->addChild( shared_from_this() );
 }
 
-const Person::PersonSet& Person::children() const
+const PersonSet& Person::children() const
 {
     return children_;
 }

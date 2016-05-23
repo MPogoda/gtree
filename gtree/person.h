@@ -1,12 +1,12 @@
 #pragma once
 
+#include "fwd.h"
+
 #include <memory>
 #include <string>
-#include <unordered_set>
 
 namespace gtree
 {
-class Tree;
 /*!
  * \class Person
  * \brief
@@ -14,9 +14,6 @@ class Tree;
 class Person : public std::enable_shared_from_this< Person >
 {
 public:
-    using PersonPtr = std::shared_ptr< Person >;
-    using PersonSet = std::unordered_set< PersonPtr >;
-
     const std::string& firstName()   const noexcept;
     const std::string& lastName()    const noexcept;
     const std::string& location()    const noexcept;
