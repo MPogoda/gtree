@@ -33,4 +33,4 @@ Posses following methods
 Sample program that creates sample tree with couple of Bobs and Wills in it.
 Then it searches for all Wills who are descendant to some Bob and prints them.
 
-!(img.png)
+![sample tree](img.png)
