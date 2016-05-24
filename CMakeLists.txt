@@ -9,3 +9,8 @@ add_subdirectory( gtree )
 enable_testing()
 add_subdirectory( tests )
 
+add_executable( ${PROJECT_NAME} main.cxx )
+target_link_libraries( ${PROJECT_NAME} gtree )
+
+set_property( TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14 )
+set_property( TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON )
