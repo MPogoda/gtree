@@ -23,14 +23,27 @@ public:
 
     const PersonPtr& root() const noexcept;
 
-    auto searchByFirstName( const std::string& key ) const { return firstNameIndex_.equal_range( key ); }
-    auto searchByLastName( const std::string& key ) const { return lastNameIndex_.equal_range( key ); }
-    auto searchByLocation( const std::string& key ) const { return locationIndex_.equal_range( key ); }
-    auto searchByDateOfBirth( const std::string& key ) const { return dateOfBirthIndex_.equal_range( key ); }
+private:
+    using StringIndex = std::unordered_map< std::string, PersonPtr >;
+public:
+    class EqualRange
+    {
+    public:
+        explicit EqualRange( std::pair< StringIndex::const_iterator, StringIndex::const_iterator >&& eq_range );
+
+        const StringIndex::const_iterator& begin() const noexcept;
+        const StringIndex::const_iterator& end() const noexcept;
+    private:
+        const StringIndex::const_iterator begin_;
+        const StringIndex::const_iterator end_;
+    }; // class EqualRange
+    EqualRange searchByFirstName( const std::string& key ) const;
+    EqualRange searchByLastName( const std::string& key ) const;
+    EqualRange searchByLocation( const std::string& key ) const;
+    EqualRange searchByDateOfBirth( const std::string& key ) const;
 private: // fields
     const PersonPtr root_;
 
-    using StringIndex = std::unordered_map< std::string, PersonPtr >;
     StringIndex firstNameIndex_;
     StringIndex lastNameIndex_;
     StringIndex dateOfBirthIndex_;
