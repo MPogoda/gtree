@@ -24,7 +24,7 @@ public:
     const PersonPtr& root() const noexcept;
 
 private:
-    using StringIndex = std::unordered_map< std::string, PersonPtr >;
+    using StringIndex = std::unordered_multimap< std::string, PersonPtr >;
 public:
     class EqualRange
     {
