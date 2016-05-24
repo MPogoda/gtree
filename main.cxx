@@ -163,9 +163,9 @@ std::unordered_set< gtree::PersonConstPtr > findDescendantsFrom( const gtree::Tr
     std::unordered_set< gtree::PersonConstPtr > result{};
 
     for (const auto& bob : tree.searchByFirstName( ascendant )) {
-        std::cout << "Bob: " << *bob.second << '\n';
+        // std::cout << "Bob: " << *bob.second << '\n';
         for (const auto& d : bob.second->descendants()) {
-            std::cout << '\t' << *d << '\n';
+            // std::cout << '\t' << *d << '\n';
             if (d->firstName() == descendant) {
                 result.emplace( d );
             }
