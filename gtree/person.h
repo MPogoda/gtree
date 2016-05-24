@@ -5,6 +5,7 @@
 // Include this header because descendants() call will not work without it :)
 #include "descendants_proxy.h"
 
+#include <iosfwd>
 #include <memory>
 #include <string>
 
@@ -62,5 +63,7 @@ private: // fields
 
     friend class Tree;
 }; // class Person
+
+std::ostream& operator<<( std::ostream& out, const Person& person );
 } // namespace gtree
 

@@ -1,6 +1,7 @@
 #include "person.h"
 
 #include <exception>
+#include <iostream>
 
 namespace gtree
 {
@@ -138,6 +139,15 @@ void Person::rmChild( const PersonPtr& child )
 DescendantsProxy Person::descendants() const
 {
     return DescendantsProxy{ shared_from_this() };
+}
+
+std::ostream& operator<<( std::ostream& out, const Person& person )
+{
+    out << "Person{ firstName: \"" << person.firstName()
+        << "\", lastName: \"" << person.lastName()
+        << "\", location: \"" << person.location()
+        << "\", dateOfBirth: \"" << person.dateOfBirth() << "\"}";
+    return out;
 }
 } // namespace gtree
 
